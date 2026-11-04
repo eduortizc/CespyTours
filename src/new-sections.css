@@ -1,0 +1,354 @@
+/* New Services Section (Stories style) */
+.services-new {
+    position: relative;
+    padding: 8rem 5%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #31b3a6; /* Teal fallback */
+    background-image: url('/fondo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.services-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(49, 179, 166, 0.92); /* Teal overlay */
+    z-index: 1;
+}
+
+.services-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4rem;
+    max-width: 1000px;
+    width: 100%;
+    justify-content: center;
+}
+
+.service-card-image {
+    flex: 1;
+    min-width: 320px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.services-title-image {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-body);
+}
+
+.service-border-box {
+    border: 3px solid #00a651;
+    border-radius: 40px;
+    padding: 3rem 2rem;
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-bullets {
+    list-style-type: disc;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.4;
+    padding-left: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.service-bullets li {
+    margin-bottom: 0.75rem;
+}
+
+.service-logo-circle {
+    position: absolute;
+    bottom: -40px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+    background: white;
+    border-radius: 50%;
+    border: 2px solid #00a651;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.service-logo-circle.left {
+    position: relative;
+    bottom: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    border: none;
+    background: white;
+}
+
+.img-fallback {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #f4f4f4;
+}
+
+.service-username {
+    position: absolute;
+    bottom: -70px;
+    left: 20px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.service-username.left-aligned {
+    bottom: -40px;
+}
+
+.box-cta {
+    justify-content: center;
+}
+
+.services-title-large {
+    color: white;
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 3rem;
+    font-family: var(--font-body);
+}
+
+.service-action-row {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+}
+
+.service-arrow-line {
+    flex-grow: 1;
+    height: 50px;
+    border: 2px solid #00a651;
+    border-left: none;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 1rem;
+    margin-left: -25px; /* Overlap with circle */
+    z-index: -1;
+}
+
+.service-arrow-line i {
+    color: #00a651;
+    font-size: 1.5rem;
+}
+
+/* Moments Section */
+.moments {
+    padding: 6rem 5% 8rem;
+    background-color: transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.moments-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.moments-title {
+    color: white;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    font-family: 'Arial Black', sans-serif;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.moments-subtitle {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    -webkit-text-stroke: 1.5px white;
+    color: transparent;
+}
+
+.moments-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    min-height: 1100px; /* Aumentado para 3 columnas de 2 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.decoration {
+    position: absolute;
+    z-index: 10;
+    filter: drop-shadow(0 10px 10px rgba(0,0,0,0.2));
+}
+
+.decoration.starfish {
+    width: 200px;
+    top: -50px;
+    left: 10%;
+    transform: rotate(-15deg);
+}
+
+.decoration.seashell {
+    width: 150px;
+    bottom: 50px;
+    right: 15%;
+    transform: rotate(25deg);
+}
+
+.polaroid-wrapper {
+    position: absolute;
+    transition: transform 0.3s ease, z-index 0s;
+}
+
+.polaroid-wrapper:hover {
+    z-index: 20 !important;
+    transform: scale(1.05) !important;
+}
+
+/* Izquierda (2) */
+.polaroid-1 {
+    top: 50px;
+    left: 2%;
+    transform: rotate(-4deg);
+    z-index: 2;
+}
+
+.polaroid-2 {
+    top: 450px;
+    left: 5%;
+    transform: rotate(6deg);
+    z-index: 1;
+}
+
+/* Centro (2) */
+.polaroid-5 {
+    top: 150px;
+    left: 36%;
+    transform: rotate(2deg);
+    z-index: 5;
+}
+
+.polaroid-6 {
+    top: 550px;
+    left: 39%;
+    transform: rotate(-3deg);
+    z-index: 6;
+}
+
+/* Derecha (2) */
+.polaroid-3 {
+    top: 80px;
+    right: 2%;
+    transform: rotate(4deg);
+    z-index: 3;
+}
+
+.polaroid-4 {
+    top: 480px;
+    right: 5%;
+    transform: rotate(-5deg);
+    z-index: 4;
+}
+
+.polaroid {
+    background: white;
+    padding: 15px 15px 40px 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    border: 1px solid #ddd;
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+}
+
+.polaroid-img-placeholder {
+    width: 100%;
+    height: 380px;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.placeholder-text {
+    color: white;
+    text-align: center;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.polaroid-caption {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.polaroid-logo {
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid #eee;
+}
+
+.polaroid-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.polaroid-caption p {
+    font-family: var(--font-heading);
+    color: #00a651;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    font-weight: 600;
+    margin: 0;
+}
+
+@media (max-width: 900px) {
+    .moments-container {
+        min-height: auto;
+        flex-direction: column;
+        gap: 4rem;
+        padding: 2rem 0;
+    }
+    
+    .polaroid-wrapper {
+        position: relative;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        transform: rotate(0) !important;
+    }
+    
+    .decoration {
+        display: none;
+    }
+}
