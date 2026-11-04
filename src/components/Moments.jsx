@@ -1,102 +1,94 @@
-import React from 'react';
-
+import { useEffect, useRef, useState } from "react";
+import { gallery } from "../data/site";
 export default function Moments() {
+  const [selected, setSelected] = useState(null);
+  const dialog = useRef(null);
+  useEffect(() => {
+    if (selected !== null && !dialog.current.open) dialog.current.showModal();
+  }, [selected]);
+  const move = (direction) =>
+    setSelected(
+      (index) => (index + direction + gallery.length) % gallery.length,
+    );
   return (
-    <section className="moments" id="momentos">
-      <div className="moments-header">
-        <h2 className="moments-title">#CESPYMOMENTS <br/> <span className="moments-subtitle">EN LA RIVIERA MAYA</span></h2>
+    <section
+      className="travel-stories"
+      id="momentos"
+      aria-labelledby="moments-title"
+    >
+      <div className="stories-heading">
+        <div>
+          <span className="eyebrow">RECUERDOS QUE SE QUEDAN</span>
+          <h2 id="moments-title">El viaje también se cuenta en fotos</h2>
+        </div>
+        <p>
+          Un vistazo a los momentos y paisajes que nos inspiran a seguir
+          viajando.
+        </p>
       </div>
-      
-      <div className="moments-container">
-        {/* Decoraciones marinas (opcional, puedes agregar tus propios pngs en public) */}
-        <img src="/starfish.png" alt="" className="decoration starfish" style={{display: 'none'}} />
-        <img src="/seashell.png" alt="" className="decoration seashell" style={{display: 'none'}} />
-        
-        {/* Polaroids - Agrega tus imágenes en public/ y actualiza el src */}
-        <div className="polaroid-wrapper polaroid-1">
-          <div className="polaroid">
-            <div className="polaroid-img-placeholder">
-               <img src="/image1.jpg" alt="Moment 1" style={{width: '100%', height: '100%', objectFit: 'cover'}} />
-            </div>
-            <div className="polaroid-caption">
-              <div className="polaroid-logo">
-                <img src="/logo.png" alt="Cespy Tours" className="polaroid-logo-img" />
-              </div>
-              <p>¡Disfruté muchísimo el hotel y sin duda volvería a viajar con ustedes!</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="polaroid-wrapper polaroid-2">
-          <div className="polaroid">
-            <div className="polaroid-img-placeholder">
-               <img src="/image2.jpg" alt="Moment 2" style={{width: '100%', height: '100%', objectFit: 'cover'}} />
-            </div>
-            <div className="polaroid-caption">
-              <div className="polaroid-logo">
-                <img src="/logo.png" alt="Cespy Tours" className="polaroid-logo-img" />
-              </div>
-              <p>Unas vacaciones inolvidables gracias a Cespy Tours.</p>
-            </div>
-          </div>
-        </div>
-        
-        <div className="polaroid-wrapper polaroid-3">
-          <div className="polaroid">
-            <div className="polaroid-img-placeholder">
-               <img src="/image3.jpg" alt="Moment 3" style={{width: '100%', height: '100%', objectFit: 'cover'}} />
-            </div>
-            <div className="polaroid-caption">
-              <div className="polaroid-logo">
-                <img src="/logo.png" alt="Cespy Tours" className="polaroid-logo-img" />
-              </div>
-              <p>El paraíso perfecto, 100% recomendado.</p>
-            </div>
-          </div>
-        </div>
-        
-        <div className="polaroid-wrapper polaroid-4">
-          <div className="polaroid">
-            <div className="polaroid-img-placeholder">
-               <img src="/image.jpg" alt="Moment 4" style={{width: '100%', height: '100%', objectFit: 'cover'}} />
-            </div>
-            <div className="polaroid-caption">
-              <div className="polaroid-logo">
-                <img src="/logo.png" alt="Cespy Tours" className="polaroid-logo-img" />
-              </div>
-              <p>Experiencia maravillosa y atención de primera.</p>
-            </div>
-          </div>
-        </div>
-        <div className="polaroid-wrapper polaroid-5">
-          <div className="polaroid">
-            <div className="polaroid-img-placeholder">
-               <img src="/cancun.jpg" alt="Moment 5" style={{width: '100%', height: '100%', objectFit: 'cover'}} />
-            </div>
-            <div className="polaroid-caption">
-              <div className="polaroid-logo">
-                <img src="/logo.png" alt="Cespy Tours" className="polaroid-logo-img" />
-              </div>
-              <p>Todo el viaje fue perfecto, los mejores precios.</p>
-            </div>
-          </div>
-        </div>
-        
-        <div className="polaroid-wrapper polaroid-6">
-          <div className="polaroid">
-            <div className="polaroid-img-placeholder">
-               <img src="/fondo.jpg" alt="Moment 6" style={{width: '100%', height: '100%', objectFit: 'cover'}} />
-            </div>
-            <div className="polaroid-caption">
-              <div className="polaroid-logo">
-                <img src="/logo.png" alt="Cespy Tours" className="polaroid-logo-img" />
-              </div>
-              <p>Excelente servicio y seguimiento en cada paso.</p>
-            </div>
-          </div>
-        </div>
-
+      <div className="stories-grid">
+        {gallery.map((photo, i) => (
+          <button
+            className={`story-photo story-photo-${i}`}
+            key={photo.image}
+            onClick={() => setSelected(i)}
+            aria-label={`Ampliar: ${photo.title}`}
+          >
+            <img
+              src={photo.image}
+              alt={photo.alt}
+              loading="lazy"
+              width="720"
+              height="900"
+            />
+            <span className="story-caption">
+              {photo.title}
+              <span aria-hidden="true">↗</span>
+            </span>
+          </button>
+        ))}
       </div>
+      <dialog
+        ref={dialog}
+        className="media-dialog"
+        onClose={() => setSelected(null)}
+        onClick={(event) => {
+          if (event.target === dialog.current) dialog.current.close();
+        }}
+        onKeyDown={(event) => {
+          if (event.key === "ArrowRight") move(1);
+          if (event.key === "ArrowLeft") move(-1);
+        }}
+        aria-labelledby="photo-caption"
+      >
+        <button
+          className="dialog-close"
+          onClick={() => dialog.current.close()}
+          aria-label="Cerrar fotografía"
+          autoFocus
+        >
+          ×
+        </button>
+        {selected !== null && (
+          <div className="lightbox-content">
+            <img src={gallery[selected].image} alt={gallery[selected].alt} />
+            <div className="lightbox-controls">
+              <button onClick={() => move(-1)} aria-label="Foto anterior">
+                ←
+              </button>
+              <p id="photo-caption">
+                {gallery[selected].title}{" "}
+                <small>
+                  {selected + 1} / {gallery.length}
+                </small>
+              </p>
+              <button onClick={() => move(1)} aria-label="Foto siguiente">
+                →
+              </button>
+            </div>
+          </div>
+        )}
+      </dialog>
     </section>
   );
 }

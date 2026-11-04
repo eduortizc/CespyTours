@@ -1,61 +1,32 @@
-import React from 'react';
-
-export default function Services() {
-  const services = [
-    {
-      id: 1,
-      title: "Hoteles Todo Incluido",
-      icon: "fa-hotel",
-      desc: "Relájate y disfruta sin preocupaciones en los mejores resorts del mundo."
-    },
-    {
-      id: 2,
-      title: "Vuelos",
-      icon: "fa-plane",
-      desc: "Encuentra las mejores tarifas en vuelos nacionales e internacionales."
-    },
-    {
-      id: 3,
-      title: "Hospedajes a tu medida",
-      icon: "fa-bed",
-      desc: "Desde cabañas acogedoras hasta villas de lujo para tu descanso."
-    },
-    {
-      id: 4,
-      title: "Cruceros Inolvidables",
-      icon: "fa-ship",
-      desc: "Vive la magia de navegar por el océano con todas las comodidades."
-    },
-    {
-      id: 5,
-      title: "Traslados Seguros",
-      icon: "fa-van-shuttle",
-      desc: "Llega a tu destino de forma segura y cómoda desde el aeropuerto."
-    },
-    {
-      id: 6,
-      title: "Trámites de Visas",
-      icon: "fa-passport",
-      desc: "Te asesoramos en todo el proceso para obtener tu visa sin estrés."
-    }
-  ];
-
+import { services } from "../data/site";
+export default function Services({ onPlan }) {
   return (
-    <section className="services" id="servicios">
+    <section
+      className="services"
+      id="servicios"
+      aria-labelledby="services-title"
+    >
       <div className="section-header">
-        <h2>Nuestros Servicios</h2>
-        <p>Todo lo que necesitas para tu viaje perfecto, en un solo lugar.</p>
+        <span className="eyebrow">TÚ ELIGES CÓMO VIAJAR</span>
+        <h2 id="services-title">Nos encargamos de los detalles</h2>
+        <p>Desde una escapada hasta ese viaje que llevas tiempo imaginando.</p>
       </div>
-      
       <div className="services-grid">
-        {services.map(service => (
-          <div className="service-card" key={service.id}>
+        {services.map((service) => (
+          <article className="service-card" key={service.id}>
             <div className="icon-wrapper">
-              <i className={`fa-solid ${service.icon}`}></i>
+              <i className={`fa-solid ${service.icon}`} aria-hidden="true" />
             </div>
             <h3>{service.title}</h3>
             <p>{service.desc}</p>
-          </div>
+            <button
+              className="text-link"
+              onClick={() => onPlan({ service: service.id })}
+            >
+              Consultar opciones <span aria-hidden="true">↗</span>
+              <span className="sr-only"> de {service.title}</span>
+            </button>
+          </article>
         ))}
       </div>
     </section>

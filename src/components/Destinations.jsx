@@ -1,66 +1,53 @@
-import React from 'react';
-
-export default function Destinations() {
-  const destinations = [
-    { 
-      id: 1, 
-      title: "Cancún, México", 
-      image: "/cancun.jpg", 
-      desc: "Playas de arena blanca y vida nocturna vibrante." 
-    },
-    { 
-      id: 2, 
-      title: "París, Francia", 
-      image: "/image1.jpg", 
-      desc: "La ciudad del amor, arte y gastronomía." 
-    },
-    { 
-      id: 3, 
-      title: "Punta Cana, RD", 
-      image: "/image2.jpg", 
-      desc: "El paraíso caribeño perfecto para relajarse." 
-    },
-    { 
-      id: 4, 
-      title: "Tulum, México", 
-      image: "/image3.jpg", 
-      desc: "Ruinas mayas, cenotes mágicos y playas espectaculares." 
-    },
-    { 
-      id: 5, 
-      title: "Machu Picchu, Perú", 
-      image: "/fondo.jpg", 
-      desc: "Maravilla del mundo con increíbles montañas y cultura Inca." 
-    },
-    { 
-      id: 6, 
-      title: "Roma, Italia", 
-      image: "/image.jpg", 
-      desc: "Explora la historia antigua y disfruta de la mejor pasta." 
-    }
-  ];
-
+import { destinations } from "../data/site";
+export default function Destinations({ onPlan }) {
   return (
-    <section className="destinations" id="destinos">
+    <section
+      className="destinations"
+      id="destinos"
+      aria-labelledby="destinations-title"
+    >
       <div className="section-header">
-        <h2>Destinos Populares</h2>
-        <p>Descubre los lugares más increíbles que nuestros viajeros recomiendan.</p>
+        <span className="eyebrow">UN POCO DE INSPIRACIÓN</span>
+        <h2 id="destinations-title">¿A dónde te gustaría ir?</h2>
+        <p>Empieza por un destino. El resto lo planeamos contigo.</p>
       </div>
-      
       <div className="destinations-grid">
-        {destinations.map(dest => (
-          <div className="destination-card" key={dest.id}>
+        {destinations.map((dest) => (
+          <article className="destination-card" key={dest.id}>
             <div className="destination-img-wrapper">
-              <img src={dest.image} alt={dest.title} className="destination-img" />
-              <div className="destination-overlay">
-                <button className="btn-primary btn-small">Ver Paquetes</button>
-              </div>
+              <img
+                src={dest.image}
+                alt={
+                  dest.id === "custom"
+                    ? "Atardecer en una playa, inspiración para tu próximo viaje"
+                    : `Paisaje de ${dest.title}`
+                }
+                className="destination-img"
+                loading="lazy"
+                width="600"
+                height="440"
+              />
             </div>
             <div className="destination-info">
+              <span className="eyebrow">{dest.region}</span>
               <h3>{dest.title}</h3>
               <p>{dest.desc}</p>
+              <button
+                className="text-link"
+                onClick={() =>
+                  onPlan({
+                    destination: dest.destination,
+                    service: dest.service,
+                  })
+                }
+              >
+                {dest.id === "custom"
+                  ? "Diseñar mi viaje"
+                  : `Consultar ${dest.title}`}{" "}
+                <span aria-hidden="true">↗</span>
+              </button>
             </div>
-          </div>
+          </article>
         ))}
       </div>
     </section>

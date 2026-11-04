@@ -1,16 +1,58 @@
-# React + Vite
+# Cespy Tours
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Landing page en React + Vite para consultar servicios turísticos y preparar solicitudes por WhatsApp. No requiere servidor de aplicaciones, cuentas ni base de datos.
 
-Currently, two official plugins are available:
+## Desarrollo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Requiere Node.js 22.12+ (o 24 LTS).
 
-## React Compiler
+```sh
+npm ci
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Validación y compilación
 
-## Expanding the Oxlint configuration
+```sh
+npm test
+npm run build
+npm run preview
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+La carpeta `dist/` se puede alojar en un servicio de hosting estático. Está preparada para publicarse en la raíz de un dominio.
+
+## Solicitudes
+
+1. El usuario elige servicio, destino y fechas exactas, flexibles o por definir.
+2. Indica adultos, menores y sus edades. Presupuesto y preferencias son opcionales.
+3. Indica su nombre; teléfono y correo son opcionales.
+4. Revisa el mensaje y abre WhatsApp con el texto preparado, o copia la solicitud.
+
+La página no envía mensajes automáticamente ni confirma reservas o disponibilidad. El cliente termina el envío dentro de WhatsApp. Los datos permanecen únicamente en memoria durante el uso de la página y se pierden al recargar. No se usa localStorage, analítica de formularios ni un servicio externo de recepción.
+
+Las tarjetas de servicios/destinos rellenan la solicitud conservando los demás datos introducidos. Los campos ocultos de fechas, hospedaje y edades que ya no corresponden no se incluyen en el mensaje.
+
+## Contenido y contacto
+
+Editar `src/data/site.js` para modificar servicios, destinos, galería, origen del video y contactos. El WhatsApp `529994388714` se conservó del proyecto original. Confirmar con Cespy que sigue siendo el número de atención antes de publicar. Correo y redes permanecen vacíos hasta tener datos confirmados; los enlaces vacíos no se muestran. Se retiraron las reseñas y datos de ejemplo.
+
+Se usan directamente las imágenes originales de `public/` y `public/moments/`. No se añaden fotografías, miniaturas ni copias WebP. Las imágenes de portada y su composición se mantienen, con ajustes de proporciones para evitar que tapen el texto. La galería usa fotografías existentes; no las presenta como reseñas.
+
+El video se agrega manualmente en `public/sensira.mp4`. Al copiarlo a esa ruta, el reproductor lo utiliza sin cambiar el código. Este cambio no incluye ni sube archivos de video. La portada reutiliza `public/cancun.jpg`; no se presenta como un fotograma de Sensira. El reproductor nativo se monta al pulsar la portada, tiene controles y se detiene al cerrar. Si el archivo aún no está disponible o falla su reproducción, se muestra un mensaje y sigue disponible la consulta por WhatsApp.
+
+La ruta del video y su portada se configuran en `video` en `src/data/site.js`. No se publican enlaces a carpetas multimedia privadas.
+
+## Estructura
+
+- `src/components/CTA.jsx`: formulario por pasos, revisión y copia.
+- `src/lib/trip.js`: validaciones y composición del mensaje.
+- `tests/trip.test.js`: validaciones de fechas, viajeros, edades, presupuesto, contactos y URL de WhatsApp.
+- `src/components/Moments.jsx`: galería con visor, navegación y cierre con Escape.
+- `src/components/VideoSection.jsx`: video con controles y cierre accesible.
+- `src/enhancements.css`: ajustes visuales y responsive sobre la identidad existente.
+
+## Comprobación manual
+
+Revisar en escritorio y móvil: prellenado desde servicios y destinos, fechas, edades de menores (incluido cero años), edición del mensaje y copia de solicitud. Abrir el enlace de WhatsApp sin enviar mensajes de prueba a la agencia. Comprobar galería, menú y cierre de los visores con Escape.
+
+Después de agregar `public/sensira.mp4`, comprobar la reproducción y el cierre del video. Antes de subirlo, la consulta por WhatsApp sigue disponible.
