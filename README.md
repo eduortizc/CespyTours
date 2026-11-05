@@ -36,11 +36,19 @@ Las tarjetas de servicios/destinos rellenan la solicitud conservando los demás 
 
 Editar `src/data/site.js` para modificar servicios, destinos, galería, origen del video y contactos. El WhatsApp `529994388714` se conservó del proyecto original. Confirmar con Cespy que sigue siendo el número de atención antes de publicar. Correo y redes permanecen vacíos hasta tener datos confirmados; los enlaces vacíos no se muestran. Se retiraron las reseñas y datos de ejemplo.
 
-Se usan directamente las imágenes originales de `public/` y `public/moments/`. No se añaden fotografías, miniaturas ni copias WebP. Las imágenes de portada y su composición se mantienen, con ajustes de proporciones para evitar que tapen el texto. La galería usa fotografías existentes; no las presenta como reseñas.
+Se usan directamente las imágenes originales de `public/` y `public/moments/`. El catálogo utiliza los cinco carteles originales proporcionados por Cespy: `parispaisesbajos.jpeg`, `perlaseuropa.jpeg`, `peru.jpeg`, `puntacana.jpeg` y `ecosjapon.jpeg`. No se generan fotografías, miniaturas ni copias WebP. Las imágenes de portada y su composición se mantienen, con ajustes de proporciones para evitar que tapen el texto. La galería usa fotografías existentes; no las presenta como reseñas.
 
 El video se agrega manualmente en `public/sensira.mp4`. Al copiarlo a esa ruta, el reproductor lo utiliza sin cambiar el código. Este cambio no incluye ni sube archivos de video. La portada reutiliza `public/cancun.jpg`; no se presenta como un fotograma de Sensira. El reproductor nativo se monta al pulsar la portada, tiene controles y se detiene al cerrar. Si el archivo aún no está disponible o falla su reproducción, se muestra un mensaje y sigue disponible la consulta por WhatsApp.
 
 La ruta del video y su portada se configuran en `video` en `src/data/site.js`. No se publican enlaces a carpetas multimedia privadas.
+
+## Catálogo de viajes
+
+Los cinco carteles se agregan manualmente en `public/` con los nombres indicados arriba. Esta actualización publica únicamente código y documentación; no incluye archivos de imágenes ni video.
+
+La sección «¿A dónde te gustaría ir?» muestra los carteles completos en dos columnas grandes y una columna en móvil. Se pueden ampliar y abrir en su tamaño original. La información también se presenta como texto: duración, precio base en USD, impuestos por separado, ocupación, ruta e inclusiones y suplementos desplegables. Los importes se transcribieron de los carteles suministrados; no se anuncia disponibilidad en tiempo real.
+
+Consultar un paquete prellena el destino en el formulario. Punta Cana también prellena Monterrey como ciudad de salida. Se conservan los demás datos de la solicitud. Los carteles y sus datos se configuran en `destinations` en `src/data/site.js`.
 
 ## Estructura
 
