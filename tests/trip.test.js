@@ -112,7 +112,7 @@ test("el mensaje preserva acentos y caracteres sin alterar la URL de destino", (
   );
   const url = new URL(whatsappUrl(message));
   assert.equal(url.hostname, "wa.me");
-  assert.equal(url.pathname, "/529994388714");
+  assert.equal(url.pathname, "/529995545813");
   assert.equal(url.searchParams.get("text"), message);
   assert.match(message, /Edades de menores: 0 años/);
   assert.doesNotMatch(message, /0, 16/);

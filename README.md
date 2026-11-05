@@ -34,7 +34,7 @@ Las tarjetas de servicios/destinos rellenan la solicitud conservando los demás 
 
 ## Contenido y contacto
 
-Editar `src/data/site.js` para modificar servicios, destinos, galería, origen del video y contactos. El WhatsApp `529994388714` se conservó del proyecto original. Confirmar con Cespy que sigue siendo el número de atención antes de publicar. Correo y redes permanecen vacíos hasta tener datos confirmados; los enlaces vacíos no se muestran. Se retiraron las reseñas y datos de ejemplo.
+Editar `src/data/site.js` para modificar servicios, destinos, galería, origen del video y contactos. El WhatsApp `529995545813` es el número oficial de atención. Correo y redes permanecen vacíos hasta tener datos confirmados; los enlaces vacíos no se muestran. Se retiraron las reseñas y datos de ejemplo.
 
 Se usan directamente las imágenes originales de `public/` y `public/moments/`. El catálogo utiliza los cinco carteles originales proporcionados por Cespy: `parispaisesbajos.jpeg`, `perlaseuropa.jpeg`, `peru.jpeg`, `puntacana.jpeg` y `ecosjapon.jpeg`. No se generan fotografías, miniaturas ni copias WebP. Las imágenes de portada y su composición se mantienen, con ajustes de proporciones para evitar que tapen el texto. La galería usa fotografías existentes; no las presenta como reseñas.
 

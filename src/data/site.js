@@ -1,7 +1,7 @@
 // Configuración pública. Completar redes/correo solo con datos confirmados de Cespy.
 export const contact = {
-  whatsapp: "529994388714",
-  phoneLabel: "+52 999 438 8714",
+  whatsapp: "529995545813",
+  phoneLabel: "+52 999 554 5813",
   email: "",
   instagram: "",
   facebook: "",
